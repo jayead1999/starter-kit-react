@@ -1,11 +1,12 @@
 import { Form, Head } from '@inertiajs/react';
-import InputError from '@/components/input-error';
-import PasswordInput from '@/components/password-input';
+import { Building2, Chrome, Mail, User } from 'lucide-react';
+import { Divider } from '@/components/auth-ui/divider';
+import { Field } from '@/components/auth-ui/field';
+import { Input } from '@/components/auth-ui/input';
+import { PasswordInput } from '@/components/auth-ui/password-input';
+import { SocialButton } from '@/components/auth-ui/social-button';
+import { SubmitButton } from '@/components/auth-ui/submit-button';
 import TextLink from '@/components/text-link';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Spinner } from '@/components/ui/spinner';
 import { login } from '@/routes';
 import { store } from '@/routes/register';
 
@@ -13,6 +14,7 @@ export default function Register() {
     return (
         <>
             <Head title="Register" />
+
             <Form
                 {...store.form()}
                 resetOnSuccess={['password', 'password_confirmation']}
@@ -21,9 +23,12 @@ export default function Register() {
             >
                 {({ processing, errors }) => (
                     <>
-                        <div className="grid gap-6">
-                            <div className="grid gap-2">
-                                <Label htmlFor="name">Name</Label>
+                        <div className="space-y-5">
+                            <Field
+                                htmlFor="name"
+                                label="Full Name"
+                                error={errors.name}
+                            >
                                 <Input
                                     id="name"
                                     type="text"
@@ -33,15 +38,15 @@ export default function Register() {
                                     autoComplete="name"
                                     name="name"
                                     placeholder="Full name"
+                                    icon={User}
                                 />
-                                <InputError
-                                    message={errors.name}
-                                    className="mt-2"
-                                />
-                            </div>
+                            </Field>
 
-                            <div className="grid gap-2">
-                                <Label htmlFor="email">Email address</Label>
+                            <Field
+                                htmlFor="email"
+                                label="Email Address"
+                                error={errors.email}
+                            >
                                 <Input
                                     id="email"
                                     type="email"
@@ -49,55 +54,69 @@ export default function Register() {
                                     tabIndex={2}
                                     autoComplete="email"
                                     name="email"
-                                    placeholder="email@example.com"
+                                    placeholder="name@company.com"
+                                    icon={Mail}
                                 />
-                                <InputError message={errors.email} />
-                            </div>
+                            </Field>
 
-                            <div className="grid gap-2">
-                                <Label htmlFor="password">Password</Label>
+                            <Field
+                                htmlFor="password"
+                                label="Password"
+                                error={errors.password}
+                            >
                                 <PasswordInput
                                     id="password"
                                     required
                                     tabIndex={3}
                                     autoComplete="new-password"
                                     name="password"
-                                    placeholder="Password"
+                                    placeholder="Create a password"
                                 />
-                                <InputError message={errors.password} />
-                            </div>
+                            </Field>
 
-                            <div className="grid gap-2">
-                                <Label htmlFor="password_confirmation">
-                                    Confirm password
-                                </Label>
+                            <Field
+                                htmlFor="password_confirmation"
+                                label="Confirm Password"
+                                error={errors.password_confirmation}
+                            >
                                 <PasswordInput
                                     id="password_confirmation"
                                     required
                                     tabIndex={4}
                                     autoComplete="new-password"
                                     name="password_confirmation"
-                                    placeholder="Confirm password"
+                                    placeholder="Confirm your password"
                                 />
-                                <InputError
-                                    message={errors.password_confirmation}
+                            </Field>
+
+                            <SubmitButton
+                                label="Create Account"
+                                processing={processing}
+                                tabIndex={5}
+                                testId="register-user-button"
+                            />
+
+                            <Divider label="Or continue with" />
+
+                            <div className="grid grid-cols-2 gap-3">
+                                <SocialButton
+                                    label="Google"
+                                    icon={<Chrome className="size-4" />}
+                                />
+                                <SocialButton
+                                    label="SSO"
+                                    icon={<Building2 className="size-4" />}
                                 />
                             </div>
-
-                            <Button
-                                type="submit"
-                                className="mt-2 w-full"
-                                tabIndex={5}
-                                data-test="register-user-button"
-                            >
-                                {processing && <Spinner />}
-                                Create account
-                            </Button>
                         </div>
 
-                        <div className="text-center text-sm text-muted-foreground">
+                        <div className="text-center text-sm text-slate-500">
                             Already have an account?{' '}
-                            <TextLink href={login()} tabIndex={6}>
+                            <TextLink
+                                href={login()}
+                                tabIndex={6}
+                                className="font-semibold text-blue-600 no-underline hover:text-blue-700"
+                            >
                                 Log in
                             </TextLink>
                         </div>
@@ -109,6 +128,6 @@ export default function Register() {
 }
 
 Register.layout = {
-    title: 'Create an account',
-    description: 'Enter your details below to create your account',
+    title: 'Enterprise Starter',
+    description: 'Create your professional workspace account',
 };

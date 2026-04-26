@@ -1,6 +1,6 @@
 import { Head } from '@inertiajs/react';
 import AppearanceTabs from '@/components/appearance-tabs';
-import Heading from '@/components/heading';
+import { SettingsPageShell } from '@/components/settings-page-shell';
 import { edit as editAppearance } from '@/routes/appearance';
 
 export default function Appearance() {
@@ -8,16 +8,36 @@ export default function Appearance() {
         <>
             <Head title="Appearance settings" />
 
-            <h1 className="sr-only">Appearance settings</h1>
-
-            <div className="space-y-6">
-                <Heading
-                    variant="small"
-                    title="Appearance settings"
-                    description="Update your account's appearance settings"
-                />
-                <AppearanceTabs />
-            </div>
+            <SettingsPageShell
+                title="Appearance"
+                description="Choose how the workspace should look across dashboards, forms, and account pages."
+                aside={
+                    <div className="rounded-lg border border-slate-200 bg-slate-50 p-4">
+                        <p className="text-sm font-semibold text-slate-900">
+                            System mode
+                        </p>
+                        <p className="mt-2 text-sm leading-6 text-slate-500">
+                            System follows the theme preference from your
+                            device and updates automatically when it changes.
+                        </p>
+                    </div>
+                }
+            >
+                <section className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+                    <div className="max-w-2xl space-y-2">
+                        <h2 className="text-lg font-semibold text-slate-950">
+                            Theme preference
+                        </h2>
+                        <p className="text-sm leading-6 text-slate-500">
+                            Select a light, dark, or system-matched interface
+                            for your account.
+                        </p>
+                    </div>
+                    <div className="mt-6">
+                        <AppearanceTabs />
+                    </div>
+                </section>
+            </SettingsPageShell>
         </>
     );
 }

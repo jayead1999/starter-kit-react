@@ -1,12 +1,13 @@
 import { Form, Head } from '@inertiajs/react';
-import InputError from '@/components/input-error';
-import PasswordInput from '@/components/password-input';
+import { Building2, Chrome, Mail } from 'lucide-react';
+import { Checkbox } from '@/components/auth-ui/checkbox';
+import { Divider } from '@/components/auth-ui/divider';
+import { Field } from '@/components/auth-ui/field';
+import { Input } from '@/components/auth-ui/input';
+import { PasswordInput } from '@/components/auth-ui/password-input';
+import { SocialButton } from '@/components/auth-ui/social-button';
+import { SubmitButton } from '@/components/auth-ui/submit-button';
 import TextLink from '@/components/text-link';
-import { Button } from '@/components/ui/button';
-import { Checkbox } from '@/components/ui/checkbox';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Spinner } from '@/components/ui/spinner';
 import { register } from '@/routes';
 import { store } from '@/routes/login';
 import { request } from '@/routes/password';
@@ -33,9 +34,18 @@ export default function Login({
             >
                 {({ processing, errors }) => (
                     <>
-                        <div className="grid gap-6">
-                            <div className="grid gap-2">
-                                <Label htmlFor="email">Email address</Label>
+                        {status && (
+                            <div className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700">
+                                {status}
+                            </div>
+                        )}
+
+                        <div className="space-y-5">
+                            <Field
+                                htmlFor="email"
+                                label="Email Address"
+                                error={errors.email}
+                            >
                                 <Input
                                     id="email"
                                     type="email"
@@ -44,78 +54,85 @@ export default function Login({
                                     autoFocus
                                     tabIndex={1}
                                     autoComplete="email"
-                                    placeholder="email@example.com"
+                                    placeholder="name@company.com"
+                                    icon={Mail}
                                 />
-                                <InputError message={errors.email} />
-                            </div>
+                            </Field>
 
-                            <div className="grid gap-2">
-                                <div className="flex items-center">
-                                    <Label htmlFor="password">Password</Label>
-                                    {canResetPassword && (
+                            <Field
+                                htmlFor="password"
+                                label="Password"
+                                error={errors.password}
+                                action={
+                                    canResetPassword ? (
                                         <TextLink
                                             href={request()}
-                                            className="ml-auto text-sm"
+                                            className="text-xs font-medium text-blue-600 no-underline hover:text-blue-700"
                                             tabIndex={5}
                                         >
                                             Forgot password?
                                         </TextLink>
-                                    )}
-                                </div>
+                                    ) : null
+                                }
+                            >
                                 <PasswordInput
                                     id="password"
                                     name="password"
                                     required
                                     tabIndex={2}
                                     autoComplete="current-password"
-                                    placeholder="Password"
+                                    placeholder="••••••••"
                                 />
-                                <InputError message={errors.password} />
-                            </div>
+                            </Field>
 
-                            <div className="flex items-center space-x-3">
-                                <Checkbox
-                                    id="remember"
-                                    name="remember"
-                                    tabIndex={3}
-                                />
-                                <Label htmlFor="remember">Remember me</Label>
-                            </div>
+                            <Checkbox
+                                id="remember"
+                                name="remember"
+                                label="Keep me signed in"
+                                tabIndex={3}
+                            />
 
-                            <Button
-                                type="submit"
-                                className="mt-4 w-full"
+                            <SubmitButton
+                                label="Sign In"
+                                processing={processing}
                                 tabIndex={4}
-                                disabled={processing}
-                                data-test="login-button"
-                            >
-                                {processing && <Spinner />}
-                                Log in
-                            </Button>
+                                testId="login-button"
+                            />
+
+                            <Divider label="Or continue with" />
+
+                            <div className="grid grid-cols-2 gap-3">
+                                <SocialButton
+                                    label="Google"
+                                    icon={<Chrome className="size-4" />}
+                                />
+                                <SocialButton
+                                    label="SSO"
+                                    icon={<Building2 className="size-4" />}
+                                />
+                            </div>
                         </div>
 
                         {canRegister && (
-                            <div className="text-center text-sm text-muted-foreground">
-                                Don't have an account?{' '}
-                                <TextLink href={register()} tabIndex={5}>
-                                    Sign up
+                            <div className="text-center text-sm text-slate-500">
+                                Don&apos;t have an account?{' '}
+                                <TextLink
+                                    href={register()}
+                                    tabIndex={5}
+                                    className="font-semibold text-blue-600 no-underline hover:text-blue-700"
+                                >
+                                    Request access
                                 </TextLink>
                             </div>
                         )}
                     </>
                 )}
             </Form>
-
-            {status && (
-                <div className="mb-4 text-center text-sm font-medium text-green-600">
-                    {status}
-                </div>
-            )}
         </>
     );
 }
 
 Login.layout = {
-    title: 'Log in to your account',
-    description: 'Enter your email and password below to log in',
+    title: 'Enterprise Starter',
+    description: 'Sign in to your professional workspace',
 };
