@@ -1,0 +1,12 @@
+{
+    "agents": [
+        "codex",
+        "gemini"
+    ],
+    "skills": [
+        "fortify-development",
+        "laravel-best-practices",
+        "wayfinder-development",
+        "pest-testing"
+    ]
+}
