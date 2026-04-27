@@ -36,7 +36,7 @@ export default function ResetPassword({ token, email }: Props) {
                                 value={email}
                                 readOnly
                                 icon={Mail}
-                                className="cursor-not-allowed bg-slate-100 text-slate-500"
+                                className="cursor-not-allowed bg-muted text-muted-foreground"
                             />
                         </Field>
 

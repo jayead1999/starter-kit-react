@@ -21,7 +21,7 @@ export function SubmitButton({
             disabled={processing}
             tabIndex={tabIndex}
             data-test={testId}
-            className="h-11 w-full rounded-xl bg-blue-600 text-sm font-semibold text-white shadow-sm shadow-blue-950/15 transition hover:bg-blue-700"
+            className="h-11 w-full rounded-xl bg-primary text-sm font-semibold text-primary-foreground shadow-sm transition hover:bg-primary/90"
         >
             {processing && <Spinner />}
             <span>{label}</span>

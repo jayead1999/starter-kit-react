@@ -60,7 +60,7 @@ export default function TwoFactorChallenge() {
             >
                 {({ errors, processing, clearErrors }) => (
                     <>
-                        <div className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-500">
+                        <div className="rounded-xl border border-border bg-muted px-4 py-3 text-sm text-muted-foreground">
                             {showRecoveryInput
                                 ? 'Use one of your saved recovery codes to access your workspace.'
                                 : 'Use your authenticator app to complete the secure sign-in flow.'}
@@ -84,7 +84,7 @@ export default function TwoFactorChallenge() {
                             </Field>
                         ) : (
                             <div className="space-y-3">
-                                <label className="block text-sm font-medium text-slate-600">
+                                <label className="block text-sm font-medium text-muted-foreground">
                                     Authentication Code
                                 </label>
                                 <div className="flex justify-center">
@@ -103,7 +103,7 @@ export default function TwoFactorChallenge() {
                                                     <InputOTPSlot
                                                         key={index}
                                                         index={index}
-                                                        className="h-11 w-10 rounded-xl border border-slate-200 bg-slate-50 text-sm"
+                                                        className="h-11 w-10 rounded-xl border border-input bg-input text-sm text-foreground"
                                                     />
                                                 ),
                                             )}
@@ -122,12 +122,12 @@ export default function TwoFactorChallenge() {
                             processing={processing}
                         />
 
-                        <div className="text-center text-sm text-slate-500">
+                        <div className="text-center text-sm text-muted-foreground">
                             <TextLink
                                 href="#"
                                 as="button"
                                 type="button"
-                                className="font-semibold text-blue-600 no-underline hover:text-blue-700"
+                                className="font-semibold text-primary no-underline hover:text-primary/80"
                                 onClick={() => toggleRecoveryMode(clearErrors)}
                             >
                                 {authConfigContent.toggleText}

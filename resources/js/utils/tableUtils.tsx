@@ -19,8 +19,8 @@ const badgeToneClasses: Record<string, string> = {
     yellow: 'border-amber-200 bg-amber-50 text-amber-700',
     red: 'border-red-200 bg-red-50 text-red-700',
     rose: 'border-rose-200 bg-rose-50 text-rose-700',
-    gray: 'border-slate-200 bg-slate-50 text-slate-700',
-    slate: 'border-slate-200 bg-slate-50 text-slate-700',
+    gray: 'border-border bg-muted text-muted-foreground',
+    slate: 'border-border bg-muted text-muted-foreground',
 };
 
 const badgeDotClasses: Record<string, string> = {
@@ -92,7 +92,7 @@ export function createDateColumn<T extends Row>(
         const dateValue = item[key];
 
         if (!dateValue) {
-            return <span className="text-slate-400">-</span>;
+            return <span className="text-muted-foreground">-</span>;
         }
 
         return (
@@ -167,7 +167,7 @@ export function createTagsColumn<T extends Row>(
                         );
                     })}
                     {tags.length === 0 && (
-                        <span className="text-sm text-slate-400">
+                        <span className="text-sm text-muted-foreground">
                             No {header.toLowerCase()}
                         </span>
                     )}
@@ -299,7 +299,7 @@ export function createImageColumn<T extends Row>(
             const imageUrl = imageUrlFn?.(item) ?? String(item[key] ?? defaultImage);
 
             if (!imageUrl) {
-                return <span className="text-slate-400">-</span>;
+                return <span className="text-muted-foreground">-</span>;
             }
 
             return (

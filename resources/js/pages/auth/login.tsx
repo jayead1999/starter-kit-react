@@ -35,7 +35,7 @@ export default function Login({
                 {({ processing, errors }) => (
                     <>
                         {status && (
-                            <div className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700">
+                            <div className="rounded-xl border border-emerald-500/25 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-600">
                                 {status}
                             </div>
                         )}
@@ -67,7 +67,7 @@ export default function Login({
                                     canResetPassword ? (
                                         <TextLink
                                             href={request()}
-                                            className="text-xs font-medium text-blue-600 no-underline hover:text-blue-700"
+                                            className="text-xs font-medium text-primary no-underline hover:text-primary/80"
                                             tabIndex={5}
                                         >
                                             Forgot password?
@@ -114,12 +114,12 @@ export default function Login({
                         </div>
 
                         {canRegister && (
-                            <div className="text-center text-sm text-slate-500">
+                            <div className="text-center text-sm text-muted-foreground">
                                 Don&apos;t have an account?{' '}
                                 <TextLink
                                     href={register()}
                                     tabIndex={5}
-                                    className="font-semibold text-blue-600 no-underline hover:text-blue-700"
+                                    className="font-semibold text-primary no-underline hover:text-primary/80"
                                 >
                                     Request access
                                 </TextLink>

@@ -174,7 +174,7 @@ export default function ListingPage<T extends Record<string, unknown>>({
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title={title} />
             <div className="px-4 py-6 md:px-6 lg:px-8">
-                <div className="mx-auto max-w-7xl rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+                <div className="mx-auto max-w-7xl rounded-lg border border-border bg-card p-5 shadow-sm">
                     <DataTable
                         title={title}
                         data={data.data}

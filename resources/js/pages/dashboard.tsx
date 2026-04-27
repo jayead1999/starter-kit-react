@@ -86,7 +86,7 @@ const rows: DashboardUser[] = [
         role: 'Viewer',
         status: 'Inactive',
         lastLogin: '3 days ago',
-        initialsClass: 'bg-slate-200 text-slate-700',
+        initialsClass: 'bg-muted text-muted-foreground',
     },
     {
         id: 4,
@@ -117,7 +117,7 @@ const toneClasses: Record<string, { icon: string; meta: string }> = {
     },
     emerald: {
         icon: 'bg-emerald-50 text-emerald-500',
-        meta: 'text-slate-400',
+        meta: 'text-muted-foreground',
     },
     amber: {
         icon: 'bg-amber-50 text-amber-500',
@@ -142,7 +142,7 @@ export default function Dashboard() {
                         >
                             {row.initials}
                         </div>
-                        <p className="text-sm font-semibold text-slate-900">
+                        <p className="text-sm font-semibold text-foreground">
                             {row.name}
                         </p>
                     </div>
@@ -191,19 +191,19 @@ export default function Dashboard() {
         <>
             <Head title="Dashboard" />
 
-            <div className="min-h-full bg-[#f7f7fb] px-4 py-5 md:px-6">
+            <div className="min-h-full bg-background px-4 py-5 md:px-6">
                 <div className="mx-auto flex w-full max-w-7xl flex-col gap-4">
-                    <section className="flex flex-col gap-4 rounded-[18px] border border-slate-200 bg-[#faf9fc] px-4 py-4 lg:flex-row lg:items-start lg:justify-between">
+                    <section className="flex flex-col gap-4 rounded-[18px] border border-border bg-card px-4 py-4 lg:flex-row lg:items-start lg:justify-between">
                         <div className="space-y-1">
-                            <h1 className="text-[34px] leading-none font-semibold tracking-tight text-slate-900">
+                            <h1 className="text-[34px] leading-none font-semibold tracking-tight text-foreground">
                                 User Management
                             </h1>
-                            <p className="text-sm text-slate-500">
+                            <p className="text-sm text-muted-foreground">
                                 Manage your enterprise team members and their
                                 access levels.
                             </p>
                         </div>
-                        <Button className="h-10 rounded-xl bg-blue-600 px-5 font-semibold text-white hover:bg-blue-700">
+                        <Button className="h-10 rounded-xl bg-primary px-5 font-semibold text-primary-foreground hover:bg-primary/90">
                             <Plus className="mr-2 size-4" />
                             Add New User
                         </Button>
@@ -217,14 +217,14 @@ export default function Dashboard() {
                             return (
                                 <article
                                     key={stat.label}
-                                    className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm shadow-slate-950/4"
+                                    className="rounded-2xl border border-border bg-card p-4 shadow-sm"
                                 >
                                     <div className="flex items-start justify-between">
                                         <div>
-                                            <p className="text-[11px] font-semibold tracking-[0.2em] text-slate-400 uppercase">
+                                            <p className="text-[11px] font-semibold tracking-[0.2em] text-muted-foreground uppercase">
                                                 {stat.label}
                                             </p>
-                                            <p className="mt-4 text-[22px] leading-none font-semibold text-slate-900">
+                                            <p className="mt-4 text-[22px] leading-none font-semibold text-foreground">
                                                 {stat.value}
                                             </p>
                                         </div>
@@ -247,7 +247,7 @@ export default function Dashboard() {
                         })}
                     </section>
 
-                    <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm shadow-slate-950/4">
+                    <section className="rounded-2xl border border-border bg-card p-4 shadow-sm">
                         <DataTable
                             title="Team Members"
                             data={rows}

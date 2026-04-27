@@ -15,7 +15,7 @@ export function Field({ htmlFor, label, action, error, children }: Props) {
             <div className="flex items-center justify-between gap-3">
                 <label
                     htmlFor={htmlFor}
-                    className="text-sm font-medium text-slate-600"
+                    className="text-sm font-medium text-muted-foreground"
                 >
                     {label}
                 </label>

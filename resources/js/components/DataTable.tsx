@@ -248,13 +248,13 @@ export default function DataTable<T extends Record<string, unknown>>({
             <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
                 <div className="flex flex-1 flex-col gap-3 sm:flex-row sm:items-center">
                     {title && (
-                        <h2 className="text-lg font-semibold text-slate-900">
+                        <h2 className="text-lg font-semibold text-foreground">
                             {title}
                         </h2>
                     )}
 
                     <div className="relative w-full max-w-md">
-                        <Search className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-slate-400" />
+                        <Search className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
                         <Input
                             placeholder={searchPlaceholder}
                             value={globalFilter}
@@ -270,7 +270,7 @@ export default function DataTable<T extends Record<string, unknown>>({
                     <Button
                         variant="outline"
                         size="sm"
-                        className="border-slate-200 bg-white text-slate-700"
+                        className="border-border bg-card text-foreground"
                         onClick={exportCsv}
                     >
                         <Download className="h-4 w-4" />
@@ -283,7 +283,7 @@ export default function DataTable<T extends Record<string, unknown>>({
                                 <Button
                                     variant="outline"
                                     size="sm"
-                                    className="border-slate-200 bg-white text-slate-700"
+                                    className="border-border bg-card text-foreground"
                                 >
                                     <SlidersHorizontal className="h-4 w-4" />
                                     Columns
@@ -326,7 +326,7 @@ export default function DataTable<T extends Record<string, unknown>>({
             </div>
 
             <div className="flex items-center justify-end gap-2">
-                <span className="text-sm text-slate-500">Show</span>
+                <span className="text-sm text-muted-foreground">Show</span>
                 <Select
                     value={String(pageSize)}
                     onValueChange={handlePageSizeChange}
@@ -342,14 +342,14 @@ export default function DataTable<T extends Record<string, unknown>>({
                         ))}
                     </SelectContent>
                 </Select>
-                <span className="text-sm text-slate-500">per page</span>
+                <span className="text-sm text-muted-foreground">per page</span>
             </div>
 
-            <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
+            <div className="overflow-hidden rounded-xl border border-border bg-card shadow-sm">
                 <div className="overflow-x-auto">
                     <table className="w-full border-collapse text-left">
-                        <thead className="border-b border-slate-200 bg-slate-50/80">
-                            <tr className="border-b border-slate-200">
+                        <thead className="border-b border-border bg-secondary/80">
+                            <tr className="border-b border-border">
                                 {visibleColumns.map((column) => {
                                     const id = getColumnId(column);
                                     const canSort =
@@ -360,14 +360,14 @@ export default function DataTable<T extends Record<string, unknown>>({
                                         <th
                                             key={id}
                                             className={cn(
-                                                'px-6 py-4 text-xs font-semibold tracking-wider text-slate-500 uppercase',
+                                                'px-6 py-4 text-xs font-semibold tracking-wider text-muted-foreground uppercase',
                                                 column.className,
                                             )}
                                         >
                                             {canSort ? (
                                                 <button
                                                     type="button"
-                                                    className="flex items-center gap-1 hover:text-slate-900"
+                                                    className="flex items-center gap-1 hover:text-foreground"
                                                     onClick={() =>
                                                         handleSort(column)
                                                     }
@@ -405,10 +405,10 @@ export default function DataTable<T extends Record<string, unknown>>({
                                     <tr
                                         key={String(item.id ?? rowIndex)}
                                         className={cn(
-                                            'group transition-colors hover:bg-slate-50/80',
+                                            'group transition-colors hover:bg-muted/80',
                                             rowIndex % 2 === 0
-                                                ? 'bg-white'
-                                                : 'bg-slate-50/35',
+                                                ? 'bg-card'
+                                                : 'bg-muted/35',
                                         )}
                                     >
                                         {visibleColumns.map((column) => {
@@ -418,7 +418,7 @@ export default function DataTable<T extends Record<string, unknown>>({
                                                 <td
                                                     key={id}
                                                     className={cn(
-                                                        'px-6 py-4 text-sm text-slate-700',
+                                                        'px-6 py-4 text-sm text-card-foreground',
                                                         column.className,
                                                     )}
                                                 >
@@ -444,7 +444,7 @@ export default function DataTable<T extends Record<string, unknown>>({
                                 <tr>
                                     <td
                                         colSpan={visibleColumns.length}
-                                        className="h-24 px-4 text-center text-sm text-slate-500"
+                                        className="h-24 px-4 text-center text-sm text-muted-foreground"
                                     >
                                         No results found.
                                     </td>

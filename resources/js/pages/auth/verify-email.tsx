@@ -11,17 +11,17 @@ export default function VerifyEmail({ status }: { status?: string }) {
             <Head title="Email verification" />
 
             <div className="space-y-6 text-center">
-                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-50 text-blue-600">
+                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary">
                     <MailCheck className="size-7" />
                 </div>
 
-                <div className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-500">
+                <div className="rounded-xl border border-border bg-muted px-4 py-3 text-sm text-muted-foreground">
                     Please verify your email address by clicking the link we
                     sent to your inbox.
                 </div>
 
                 {status === 'verification-link-sent' && (
-                    <div className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700">
+                    <div className="rounded-xl border border-emerald-500/25 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-600">
                         A new verification link has been sent successfully.
                     </div>
                 )}
@@ -36,7 +36,7 @@ export default function VerifyEmail({ status }: { status?: string }) {
 
                             <TextLink
                                 href={logout()}
-                                className="block font-semibold text-blue-600 no-underline hover:text-blue-700"
+                                className="block font-semibold text-primary no-underline hover:text-primary/80"
                             >
                                 Log out
                             </TextLink>

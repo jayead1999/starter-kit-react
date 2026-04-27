@@ -27,20 +27,22 @@ export default function Profile({
                 title="Profile"
                 description="Keep your identity and contact information accurate for your workspace account."
                 aside={
-                    <div className="rounded-lg border border-slate-200 bg-slate-50 p-4">
-                        <p className="text-sm font-semibold text-slate-900">
+                    <div className="rounded-lg border border-border bg-muted p-4">
+                        <p className="text-sm font-semibold text-foreground">
                             Account status
                         </p>
                         <dl className="mt-4 space-y-3 text-sm">
                             <div>
-                                <dt className="text-slate-500">Name</dt>
-                                <dd className="mt-1 font-medium text-slate-900">
+                                <dt className="text-muted-foreground">Name</dt>
+                                <dd className="mt-1 font-medium text-foreground">
                                     {auth.user.name}
                                 </dd>
                             </div>
                             <div>
-                                <dt className="text-slate-500">Email</dt>
-                                <dd className="mt-1 break-all font-medium text-slate-900">
+                                <dt className="text-muted-foreground">
+                                    Email
+                                </dt>
+                                <dd className="mt-1 break-all font-medium text-foreground">
                                     {auth.user.email}
                                 </dd>
                             </div>
@@ -48,12 +50,12 @@ export default function Profile({
                     </div>
                 }
             >
-                <section className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+                <section className="rounded-lg border border-border bg-card p-5 shadow-sm">
                     <div className="max-w-2xl space-y-2">
-                        <h2 className="text-lg font-semibold text-slate-950">
+                        <h2 className="text-lg font-semibold text-foreground">
                             Profile information
                         </h2>
-                        <p className="text-sm leading-6 text-slate-500">
+                        <p className="text-sm leading-6 text-muted-foreground">
                             Update the name and email address people use to
                             identify you in the workspace.
                         </p>
@@ -71,7 +73,7 @@ export default function Profile({
                                 <div className="grid gap-2">
                                     <Label htmlFor="name">Name</Label>
                                     <div className="relative">
-                                        <UserRound className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-slate-400" />
+                                        <UserRound className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground" />
                                         <Input
                                             id="name"
                                             className="pl-10"
@@ -88,7 +90,7 @@ export default function Profile({
                                 <div className="grid gap-2">
                                     <Label htmlFor="email">Email address</Label>
                                     <div className="relative">
-                                        <Mail className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-slate-400" />
+                                        <Mail className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground" />
                                         <Input
                                             id="email"
                                             type="email"
@@ -138,7 +140,7 @@ export default function Profile({
                     </Form>
                 </section>
 
-                <section className="rounded-lg border border-red-100 bg-white p-5 shadow-sm">
+                <section className="rounded-lg border border-destructive/20 bg-card p-5 shadow-sm">
                     <DeleteUser />
                 </section>
             </SettingsPageShell>

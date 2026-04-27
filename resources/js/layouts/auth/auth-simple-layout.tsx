@@ -9,13 +9,13 @@ export default function AuthSimpleLayout({
     description,
 }: AuthLayoutProps) {
     return (
-        <div className="relative flex min-h-svh flex-col bg-[#faf8ff] text-slate-900">
+        <div className="relative flex min-h-svh flex-col bg-background text-foreground">
             <main className="flex flex-1 items-center justify-center px-6 py-12">
                 <div className="w-full max-w-[440px]">
                     <div className="mb-8 flex items-center justify-between gap-4">
                         <Link
                             href={home()}
-                            className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-600 transition hover:bg-slate-50 hover:text-slate-900"
+                            className="inline-flex items-center gap-2 rounded-xl border border-border bg-card px-4 py-2.5 text-sm font-medium text-muted-foreground transition hover:bg-muted hover:text-foreground"
                         >
                             <ArrowLeft className="size-4" />
                             Home
@@ -27,33 +27,33 @@ export default function AuthSimpleLayout({
                             href={home()}
                             className="inline-flex flex-col items-center"
                         >
-                            <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-blue-600 text-white shadow-sm shadow-blue-950/15">
+                            <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-sm">
                                 <ShieldCheck className="size-6" />
                             </div>
                             <span className="text-2xl font-semibold tracking-tight">
                                 {title}
                             </span>
                         </Link>
-                        <p className="mt-2 text-sm text-slate-500">
+                        <p className="mt-2 text-sm text-muted-foreground">
                             {description}
                         </p>
                     </div>
 
-                    <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm shadow-slate-950/5">
+                    <div className="rounded-2xl border border-border bg-card p-6 shadow-sm">
                         <div className="space-y-6">{children}</div>
                     </div>
                 </div>
             </main>
 
-            <footer className="px-6 py-8 text-center text-sm text-slate-500">
+            <footer className="px-6 py-8 text-center text-sm text-muted-foreground">
                 <span>Enterprise Starter workspace</span>
-                <span className="mx-2 text-slate-300">•</span>
+                <span className="mx-2 text-muted-foreground/50">•</span>
                 <span>Secure access portal</span>
             </footer>
 
             <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
-                <div className="absolute top-[-10%] left-[-5%] h-[40%] w-[40%] rounded-full bg-blue-500/8 blur-3xl" />
-                <div className="absolute right-[-5%] bottom-[-5%] h-[30%] w-[30%] rounded-full bg-slate-300/20 blur-3xl" />
+                <div className="absolute top-[-10%] left-[-5%] h-[40%] w-[40%] rounded-full bg-primary/10 blur-3xl" />
+                <div className="absolute right-[-5%] bottom-[-5%] h-[30%] w-[30%] rounded-full bg-tertiary/20 blur-3xl" />
             </div>
         </div>
     );

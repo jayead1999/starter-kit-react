@@ -110,12 +110,12 @@ export default function Register() {
                             </div>
                         </div>
 
-                        <div className="text-center text-sm text-slate-500">
+                        <div className="text-center text-sm text-muted-foreground">
                             Already have an account?{' '}
                             <TextLink
                                 href={login()}
                                 tabIndex={6}
-                                className="font-semibold text-blue-600 no-underline hover:text-blue-700"
+                                className="font-semibold text-primary no-underline hover:text-primary/80"
                             >
                                 Log in
                             </TextLink>

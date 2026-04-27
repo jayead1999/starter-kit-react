@@ -12,7 +12,7 @@ export function SocialButton({ label, icon, className }: Props) {
         <button
             type="button"
             className={cn(
-                'flex h-11 items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 text-sm font-medium text-slate-600 transition hover:bg-slate-50 hover:text-slate-900',
+                'flex h-11 items-center justify-center gap-2 rounded-xl border border-border bg-card px-4 text-sm font-medium text-muted-foreground transition hover:bg-muted hover:text-foreground',
                 className,
             )}
         >

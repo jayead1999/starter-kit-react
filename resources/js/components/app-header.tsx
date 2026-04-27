@@ -76,7 +76,7 @@ export function AppHeader({ breadcrumbs = [] }: Props) {
 
     return (
         <>
-            <div className="border-b border-slate-200 bg-white/95 backdrop-blur">
+            <div className="border-b border-border bg-card/95 backdrop-blur">
                 <div className="mx-auto flex h-[74px] items-center px-4 md:max-w-7xl">
                     <div className="lg:hidden">
                         <Sheet>
@@ -84,19 +84,19 @@ export function AppHeader({ breadcrumbs = [] }: Props) {
                                 <Button
                                     variant="ghost"
                                     size="icon"
-                                    className="mr-2 h-10 w-10 rounded-xl border border-slate-200"
+                                    className="mr-2 h-10 w-10 rounded-xl border border-border"
                                 >
                                     <Menu className="h-5 w-5" />
                                 </Button>
                             </SheetTrigger>
                             <SheetContent
                                 side="left"
-                                className="flex h-full w-72 flex-col justify-between border-r border-slate-200 bg-white p-0"
+                                className="flex h-full w-72 flex-col justify-between border-r border-border bg-card p-0"
                             >
                                 <SheetTitle className="sr-only">
                                     Navigation menu
                                 </SheetTitle>
-                                <SheetHeader className="border-b border-slate-100 px-4 py-5 text-left">
+                                <SheetHeader className="border-b border-border px-4 py-5 text-left">
                                     <div className="flex items-center gap-3">
                                         <AppLogo />
                                     </div>
@@ -109,9 +109,9 @@ export function AppHeader({ breadcrumbs = [] }: Props) {
                                                 href={item.href}
                                                 prefetch
                                                 className={cn(
-                                                    'flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-slate-600 transition hover:bg-slate-50 hover:text-slate-900',
+                                                    'flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-muted-foreground transition hover:bg-muted hover:text-foreground',
                                                     isCurrentUrl(item.href) &&
-                                                        'bg-blue-50 text-blue-700 shadow-[inset_4px_0_0_0_theme(colors.blue.600)]',
+                                                        'bg-primary/10 text-primary shadow-[inset_4px_0_0_0_theme(colors.primary)]',
                                                 )}
                                             >
                                                 {item.icon && (
@@ -121,13 +121,13 @@ export function AppHeader({ breadcrumbs = [] }: Props) {
                                             </Link>
                                         ))}
                                     </div>
-                                    <div className="space-y-2 border-t border-slate-100 pt-4">
+                                    <div className="space-y-2 border-t border-border pt-4">
                                         {rightNavItems.map((item) => (
                                             <Link
                                                 key={item.title}
                                                 href={item.href}
                                                 prefetch
-                                                className="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-slate-600 transition hover:bg-slate-50 hover:text-slate-900"
+                                                className="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-muted-foreground transition hover:bg-muted hover:text-foreground"
                                             >
                                                 {item.icon && (
                                                     <item.icon className="h-5 w-5" />
@@ -157,9 +157,9 @@ export function AppHeader({ breadcrumbs = [] }: Props) {
                                         <Link
                                             href={item.href}
                                             className={cn(
-                                                'flex h-11 items-center gap-2 rounded-xl px-4 text-sm font-medium text-slate-600 transition hover:bg-slate-50 hover:text-slate-900',
+                                                'flex h-11 items-center gap-2 rounded-xl px-4 text-sm font-medium text-muted-foreground transition hover:bg-muted hover:text-foreground',
                                                 isCurrentUrl(item.href) &&
-                                                    'bg-blue-50 text-blue-700',
+                                                    'bg-primary/10 text-primary',
                                             )}
                                         >
                                             {item.icon && (
@@ -175,31 +175,31 @@ export function AppHeader({ breadcrumbs = [] }: Props) {
 
                     <div className="ml-auto flex items-center gap-3">
                         <div className="relative hidden w-full max-w-md items-center lg:flex">
-                            <Search className="pointer-events-none absolute left-4 size-4 text-slate-400" />
+                            <Search className="pointer-events-none absolute left-4 size-4 text-muted-foreground" />
                             <input
                                 type="text"
                                 placeholder="Search resources, team members or reports..."
-                                className="h-11 w-full rounded-xl border border-slate-200 bg-slate-50 pr-4 pl-11 text-sm text-slate-700 outline-hidden transition focus:border-blue-200 focus:bg-white focus:ring-4 focus:ring-blue-100"
+                                className="h-11 w-full rounded-xl border border-input bg-input pr-4 pl-11 text-sm text-foreground outline-hidden transition placeholder:text-muted-foreground focus:border-ring focus:ring-4 focus:ring-ring/30"
                             />
                         </div>
                         <Button
                             variant="ghost"
                             size="icon"
-                            className="hidden h-10 w-10 rounded-xl text-slate-500 hover:bg-slate-50 hover:text-slate-900 md:inline-flex"
+                            className="hidden h-10 w-10 rounded-xl text-muted-foreground hover:bg-muted hover:text-foreground md:inline-flex"
                         >
                             <Bell className="size-4" />
                         </Button>
                         <Button
                             variant="ghost"
                             size="icon"
-                            className="hidden h-10 w-10 rounded-xl text-slate-500 hover:bg-slate-50 hover:text-slate-900 md:inline-flex"
+                            className="hidden h-10 w-10 rounded-xl text-muted-foreground hover:bg-muted hover:text-foreground md:inline-flex"
                         >
                             <HelpCircle className="size-4" />
                         </Button>
                         <Button
                             asChild
                             variant="ghost"
-                            className="hidden h-10 rounded-xl px-3 text-slate-500 hover:bg-slate-50 hover:text-slate-900 md:inline-flex"
+                            className="hidden h-10 rounded-xl px-3 text-muted-foreground hover:bg-muted hover:text-foreground md:inline-flex"
                         >
                             <Link href={editAppearance()} prefetch>
                                 <Palette className="size-4" />
@@ -208,15 +208,15 @@ export function AppHeader({ breadcrumbs = [] }: Props) {
                                 </span>
                             </Link>
                         </Button>
-                        <div className="hidden h-8 w-px bg-slate-200 md:block" />
+                        <div className="hidden h-8 w-px bg-border md:block" />
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                                 <Button
                                     variant="ghost"
-                                    className="h-auto rounded-2xl border border-slate-200 bg-slate-50 px-2 py-1.5 hover:bg-slate-100"
+                                    className="h-auto rounded-2xl border border-border bg-muted px-2 py-1.5 hover:bg-accent"
                                 >
                                     <div className="flex items-center gap-3">
-                                        <Avatar className="size-8 overflow-hidden rounded-full border border-slate-200">
+                                        <Avatar className="size-8 overflow-hidden rounded-full border border-border">
                                             <AvatarImage
                                                 src={avatarSrc(
                                                     auth.user?.avatar,
@@ -230,10 +230,10 @@ export function AppHeader({ breadcrumbs = [] }: Props) {
                                             </AvatarFallback>
                                         </Avatar>
                                         <div className="hidden text-left md:block">
-                                            <p className="text-sm font-semibold text-slate-900">
+                                            <p className="text-sm font-semibold text-foreground">
                                                 {auth.user?.name ?? 'Admin'}
                                             </p>
-                                            <p className="text-xs text-slate-500">
+                                            <p className="text-xs text-muted-foreground">
                                                 Enterprise Admin
                                             </p>
                                         </div>
@@ -250,8 +250,8 @@ export function AppHeader({ breadcrumbs = [] }: Props) {
                 </div>
             </div>
             {breadcrumbs.length > 1 && (
-                <div className="flex w-full border-b border-slate-200 bg-white">
-                    <div className="mx-auto flex h-12 w-full items-center px-4 text-slate-500 md:max-w-7xl">
+                <div className="flex w-full border-b border-border bg-card">
+                    <div className="mx-auto flex h-12 w-full items-center px-4 text-muted-foreground md:max-w-7xl">
                         <Breadcrumbs breadcrumbs={breadcrumbs} />
                     </div>
                 </div>

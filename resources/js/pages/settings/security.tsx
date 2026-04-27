@@ -10,7 +10,7 @@ import TwoFactorSetupModal from '@/components/two-factor-setup-modal';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { useTwoFactorAuth } from '@/hooks/use-two-factor-auth';
-import { edit } from '@/routes/security';
+import { edit as editSecurity } from '@/routes/security';
 import { disable, enable } from '@/routes/two-factor';
 
 type Props = {
@@ -57,8 +57,8 @@ export default function Security({
                 title="Security"
                 description="Manage password changes, two-factor authentication, and recovery access."
                 aside={
-                    <div className="rounded-lg border border-slate-200 bg-slate-50 p-4">
-                        <p className="text-sm font-semibold text-slate-900">
+                    <div className="rounded-lg border border-border bg-muted p-4">
+                        <p className="text-sm font-semibold text-foreground">
                             Protection status
                         </p>
                         <div className="mt-4 flex items-center gap-3">
@@ -66,12 +66,12 @@ export default function Security({
                                 <ShieldCheck className="size-4" />
                             </span>
                             <div>
-                                <p className="text-sm font-medium text-slate-900">
+                                <p className="text-sm font-medium text-foreground">
                                     {twoFactorEnabled
                                         ? '2FA enabled'
                                         : 'Password only'}
                                 </p>
-                                <p className="text-xs text-slate-500">
+                                <p className="text-xs text-muted-foreground">
                                     {twoFactorEnabled
                                         ? 'Extra sign-in protection is active.'
                                         : 'Enable 2FA for stronger access control.'}
@@ -81,16 +81,16 @@ export default function Security({
                     </div>
                 }
             >
-                <section className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+                <section className="rounded-lg border border-border bg-card p-5 shadow-sm">
                     <div className="flex items-start gap-3">
-                        <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-slate-600">
+                        <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-muted text-muted-foreground">
                             <LockKeyhole className="size-5" />
                         </span>
                         <div className="max-w-2xl space-y-2">
-                            <h2 className="text-lg font-semibold text-slate-950">
+                            <h2 className="text-lg font-semibold text-foreground">
                                 Update password
                             </h2>
-                            <p className="text-sm leading-6 text-slate-500">
+                            <p className="text-sm leading-6 text-muted-foreground">
                                 Use a long, unique password that is not shared
                                 with other services.
                             </p>
@@ -186,16 +186,16 @@ export default function Security({
                 </section>
 
                 {canManageTwoFactor && (
-                    <section className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+                    <section className="rounded-lg border border-border bg-card p-5 shadow-sm">
                         <div className="flex items-start gap-3">
                             <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-blue-100 text-blue-700">
                                 <KeyRound className="size-5" />
                             </span>
                             <div className="max-w-2xl space-y-2">
-                                <h2 className="text-lg font-semibold text-slate-950">
+                                <h2 className="text-lg font-semibold text-foreground">
                                     Two-factor authentication
                                 </h2>
-                                <p className="text-sm leading-6 text-slate-500">
+                                <p className="text-sm leading-6 text-muted-foreground">
                                     Add a time-based authentication code to your
                                     sign-in flow.
                                 </p>
@@ -230,7 +230,7 @@ export default function Security({
                             </div>
                         ) : (
                             <div className="mt-6 flex flex-col items-start justify-start space-y-4">
-                                <p className="max-w-2xl text-sm leading-6 text-slate-500">
+                                <p className="max-w-2xl text-sm leading-6 text-muted-foreground">
                                     When enabled, you will enter a secure code
                                     from your authenticator app after your
                                     password.
@@ -285,7 +285,7 @@ Security.layout = {
     breadcrumbs: [
         {
             title: 'Security settings',
-            href: edit(),
+            href: editSecurity(),
         },
     ],
 };

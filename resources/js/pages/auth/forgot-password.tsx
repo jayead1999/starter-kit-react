@@ -14,12 +14,12 @@ export default function ForgotPassword({ status }: { status?: string }) {
 
             <div className="space-y-6">
                 {status && (
-                    <div className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700">
+                    <div className="rounded-xl border border-emerald-500/25 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-600">
                         {status}
                     </div>
                 )}
 
-                <div className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-500">
+                <div className="rounded-xl border border-border bg-muted px-4 py-3 text-sm text-muted-foreground">
                     Enter your email address and we&apos;ll send you a secure
                     password reset link.
                 </div>
@@ -52,11 +52,11 @@ export default function ForgotPassword({ status }: { status?: string }) {
                     )}
                 </Form>
 
-                <div className="text-center text-sm text-slate-500">
+                <div className="text-center text-sm text-muted-foreground">
                     Return to{' '}
                     <TextLink
                         href={login()}
-                        className="font-semibold text-blue-600 no-underline hover:text-blue-700"
+                        className="font-semibold text-primary no-underline hover:text-primary/80"
                     >
                         log in
                     </TextLink>

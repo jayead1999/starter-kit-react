@@ -1,9 +1,10 @@
 import { Link } from '@inertiajs/react';
+import type { InertiaLinkProps } from '@inertiajs/react';
 import type { LucideIcon } from 'lucide-react';
 import { Palette, ShieldCheck, UserRound } from 'lucide-react';
 import type { ReactNode } from 'react';
 import { useCurrentUrl } from '@/hooks/use-current-url';
-import { cn } from '@/lib/utils';
+import { cn, toUrl } from '@/lib/utils';
 import { edit as editAppearance } from '@/routes/appearance';
 import { edit as editProfile } from '@/routes/profile';
 import { edit as editSecurity } from '@/routes/security';
@@ -41,6 +42,7 @@ type Props = {
     description: string;
     children: ReactNode;
     aside?: ReactNode;
+    activeHref?: NonNullable<InertiaLinkProps['href']>;
 };
 
 export function SettingsPageShell({
@@ -48,21 +50,23 @@ export function SettingsPageShell({
     description,
     children,
     aside,
+    activeHref,
 }: Props) {
     const { isCurrentOrParentUrl } = useCurrentUrl();
+    const activeUrl = activeHref ? toUrl(activeHref) : undefined;
 
     return (
         <div className="px-4 py-6 md:px-6 lg:px-8">
             <div className="mx-auto flex w-full max-w-6xl flex-col gap-6">
-                <div className="flex flex-col gap-5 border-b border-slate-200 pb-6">
+                <div className="flex flex-col gap-5 border-b border-border pb-6">
                     <div className="max-w-3xl space-y-2">
                         <p className="text-sm font-medium text-blue-600">
                             Settings
                         </p>
-                        <h1 className="text-2xl font-semibold tracking-normal text-slate-950 md:text-3xl">
+                        <h1 className="text-2xl font-semibold tracking-normal text-foreground md:text-3xl">
                             {title}
                         </h1>
-                        <p className="text-sm leading-6 text-slate-500">
+                        <p className="text-sm leading-6 text-muted-foreground">
                             {description}
                         </p>
                     </div>
@@ -72,7 +76,10 @@ export function SettingsPageShell({
                         aria-label="Settings"
                     >
                         {settingsNavItems.map((item) => {
-                            const active = isCurrentOrParentUrl(item.href);
+                            const active = isCurrentOrParentUrl(
+                                item.href,
+                                activeUrl,
+                            );
 
                             return (
                                 <Link
@@ -80,16 +87,16 @@ export function SettingsPageShell({
                                     href={item.href}
                                     prefetch
                                     className={cn(
-                                        'flex min-h-16 items-center gap-3 rounded-lg border border-slate-200 bg-white px-4 py-3 text-left transition hover:border-blue-200 hover:bg-blue-50/60',
+                                        'flex min-h-16 items-center gap-3 rounded-lg border border-border bg-card px-4 py-3 text-left transition hover:border-primary/30 hover:bg-primary/10',
                                         active &&
-                                            'border-blue-200 bg-blue-50 text-blue-700',
+                                            'border-primary/40 bg-primary/10 text-primary',
                                     )}
                                 >
                                     <span
                                         className={cn(
-                                            'flex size-9 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-slate-500',
+                                            'flex size-9 shrink-0 items-center justify-center rounded-lg bg-muted text-muted-foreground',
                                             active &&
-                                                'bg-blue-600 text-white',
+                                                'bg-primary text-primary-foreground',
                                         )}
                                     >
                                         <item.icon className="size-4" />
@@ -98,7 +105,7 @@ export function SettingsPageShell({
                                         <span className="block text-sm font-semibold">
                                             {item.title}
                                         </span>
-                                        <span className="block truncate text-xs text-slate-500">
+                                        <span className="block truncate text-xs text-muted-foreground">
                                             {item.description}
                                         </span>
                                     </span>

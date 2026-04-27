@@ -1,15 +1,7 @@
-import { useEffect, useState } from 'react';
 import { Link } from '@inertiajs/react';
 import { ChevronDown } from 'lucide-react';
+import { useState } from 'react';
 import AppLogo from '@/components/app-logo';
-import {
-    sidebarFooterNavigation,
-    sidebarMainNavigation,
-    type SidebarNavItem,
-} from '@/config/sidebar-navigation';
-import { useCurrentUrl } from '@/hooks/use-current-url';
-import { cn } from '@/lib/utils';
-import { dashboard, logout } from '@/routes';
 import {
     Sidebar,
     SidebarContent,
@@ -18,6 +10,15 @@ import {
     SidebarMenuButton,
     useSidebar,
 } from '@/components/ui/sidebar';
+import {
+    sidebarFooterNavigation,
+    sidebarMainNavigation
+    
+} from '@/config/sidebar-navigation';
+import type {SidebarNavItem} from '@/config/sidebar-navigation';
+import { useCurrentUrl } from '@/hooks/use-current-url';
+import { cn } from '@/lib/utils';
+import { dashboard, logout } from '@/routes';
 
 function isLogoutItem(item: SidebarNavItem) {
     return item.href === logout().url;
@@ -31,25 +32,19 @@ function SidebarNavSection({
     collapsed: boolean;
 }) {
     const { isCurrentUrl } = useCurrentUrl();
-    const [openGroups, setOpenGroups] = useState<Record<string, boolean>>({});
-
-    useEffect(() => {
-        setOpenGroups((current) => {
-            const next = { ...current };
-
-            items.forEach((item) => {
-                if (!item.children?.length || next[item.title] !== undefined) {
-                    return;
-                }
-
-                next[item.title] = item.children.some((child) =>
-                    isCurrentUrl(child.href),
-                );
-            });
-
-            return next;
-        });
-    }, [items, isCurrentUrl]);
+    const [openGroups, setOpenGroups] = useState<Record<string, boolean>>(
+        () =>
+            Object.fromEntries(
+                items
+                    .filter((item) => item.children?.length)
+                    .map((item) => [
+                        item.title,
+                        item.children?.some((child) =>
+                            isCurrentUrl(child.href),
+                        ) ?? false,
+                    ]),
+            ),
+    );
 
     const toggleGroup = (title: string) => {
         setOpenGroups((current) => ({
@@ -82,8 +77,9 @@ function SidebarNavSection({
                                     type="button"
                                     onClick={() => toggleGroup(item.title)}
                                     className={cn(
-                                        'flex h-11 w-full items-center gap-3 px-4 text-left text-slate-500 transition hover:bg-slate-50 hover:text-slate-900',
-                                        active && 'bg-blue-50/60 text-blue-700',
+                                        'flex h-11 w-full items-center gap-3 px-4 text-left text-muted-foreground transition hover:bg-sidebar-accent hover:text-sidebar-accent-foreground',
+                                        active &&
+                                            'bg-primary/10 text-primary',
                                         collapsed && 'justify-center px-2',
                                     )}
                                 >
@@ -104,7 +100,7 @@ function SidebarNavSection({
                                 </button>
 
                                 {!collapsed && isOpen && (
-                                    <div className="bg-white py-1 pr-2 pl-9">
+                                    <div className="bg-sidebar py-1 pr-2 pl-9">
                                         {item.children.map((child) => {
                                             const ChildIcon = child.icon;
                                             const current = isCurrentUrl(
@@ -117,9 +113,9 @@ function SidebarNavSection({
                                                     href={child.href}
                                                     prefetch
                                                     className={cn(
-                                                        'flex h-8 items-center rounded-md px-3 text-[12px] font-medium text-slate-500 transition hover:bg-slate-50 hover:text-slate-900',
+                                                        'flex h-8 items-center rounded-md px-3 text-[12px] font-medium text-muted-foreground transition hover:bg-sidebar-accent hover:text-sidebar-accent-foreground',
                                                         current &&
-                                                            'bg-blue-50 text-blue-700',
+                                                            'bg-primary/10 text-primary',
                                                     )}
                                                 >
                                                     {ChildIcon && (
@@ -143,9 +139,9 @@ function SidebarNavSection({
                             isActive={active}
                             tooltip={{ children: item.title }}
                             className={cn(
-                                'h-11 rounded-none border-l-[3px] border-transparent px-4 text-slate-500 transition-all hover:bg-slate-50 hover:text-slate-900',
+                                'h-11 rounded-none border-l-[3px] border-transparent px-4 text-muted-foreground transition-all hover:bg-sidebar-accent hover:text-sidebar-accent-foreground',
                                 active &&
-                                    'border-l-blue-600 bg-blue-50/60 text-blue-700',
+                                    'border-l-primary bg-primary/10 text-primary',
                                 collapsed &&
                                     'justify-center border-l-0 px-0 group-data-[collapsible=icon]:px-2',
                             )}
@@ -190,13 +186,13 @@ export function AppSidebar() {
         <Sidebar
             collapsible="icon"
             variant="inset"
-            className="border-r border-slate-200/80"
+            className="border-r border-sidebar-border bg-sidebar"
         >
-            <SidebarHeader className="bg-white px-3 py-4">
+            <SidebarHeader className="bg-sidebar px-3 py-4">
                 <SidebarMenuButton
                     size="lg"
                     asChild
-                    className="h-auto rounded-xl bg-white px-2 py-2 hover:bg-slate-50"
+                    className="h-auto rounded-xl bg-sidebar px-2 py-2 hover:bg-sidebar-accent"
                 >
                     <Link
                         href={dashboard().url}
@@ -208,14 +204,14 @@ export function AppSidebar() {
                 </SidebarMenuButton>
             </SidebarHeader>
 
-            <SidebarContent className="bg-white px-0 py-2">
+            <SidebarContent className="bg-sidebar px-0 py-2">
                 <SidebarNavSection
                     items={sidebarMainNavigation}
                     collapsed={isCollapsed}
                 />
             </SidebarContent>
 
-            <SidebarFooter className="mt-auto bg-white px-0 py-3">
+            <SidebarFooter className="mt-auto bg-sidebar px-0 py-3">
                 <SidebarNavSection
                     items={sidebarFooterNavigation}
                     collapsed={isCollapsed}

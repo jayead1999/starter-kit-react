@@ -29,8 +29,8 @@ export default function PaginationComponent({
     );
 
     return (
-        <div className="flex flex-col items-center justify-between gap-4 border-t border-slate-200 bg-white px-6 py-4 sm:flex-row">
-            <div className="text-sm font-medium text-slate-500">
+        <div className="flex flex-col items-center justify-between gap-4 border-t border-border bg-card px-6 py-4 sm:flex-row">
+            <div className="text-sm font-medium text-muted-foreground">
                 {showPagination
                     ? `Showing ${startIndex} to ${endIndex} of ${totalCount} items`
                     : 'No items to display'}
@@ -40,7 +40,7 @@ export default function PaginationComponent({
                 <div className="flex items-center gap-2">
                     <Button
                         variant="outline"
-                        className="h-9 rounded-lg border-slate-200 bg-white px-3 text-sm font-medium text-slate-500 hover:bg-slate-50"
+                        className="h-9 rounded-lg border-border bg-card px-3 text-sm font-medium text-muted-foreground hover:bg-muted"
                         disabled={pageIndex === 0}
                         onClick={() => handlePageChange(pageIndex - 1)}
                     >
@@ -59,8 +59,8 @@ export default function PaginationComponent({
                                 className={cn(
                                     'h-9 w-9 rounded-lg px-0 text-sm font-semibold',
                                     displayPageIndex === pageIndex
-                                        ? 'bg-blue-600 text-white hover:bg-blue-700'
-                                        : 'text-slate-600 hover:bg-slate-50',
+                                        ? 'bg-primary text-primary-foreground hover:bg-primary/90'
+                                        : 'text-muted-foreground hover:bg-muted',
                                 )}
                                 onClick={() =>
                                     handlePageChange(displayPageIndex)
@@ -73,12 +73,12 @@ export default function PaginationComponent({
                         {pageCount > maxButtons &&
                             displayedPages.at(-1) !== pageCount - 1 && (
                                 <>
-                                    <span className="px-2 text-slate-300">
+                                    <span className="px-2 text-muted-foreground/50">
                                         ...
                                     </span>
                                     <Button
                                         variant="ghost"
-                                        className="h-9 w-9 rounded-lg px-0 text-sm font-semibold text-slate-600 hover:bg-slate-50"
+                                        className="h-9 w-9 rounded-lg px-0 text-sm font-semibold text-muted-foreground hover:bg-muted"
                                         onClick={() =>
                                             handlePageChange(pageCount - 1)
                                         }
@@ -91,7 +91,7 @@ export default function PaginationComponent({
 
                     <Button
                         variant="outline"
-                        className="h-9 rounded-lg border-slate-200 bg-white px-3 text-sm font-medium text-slate-600 hover:bg-slate-50 active:scale-95"
+                        className="h-9 rounded-lg border-border bg-card px-3 text-sm font-medium text-muted-foreground hover:bg-muted active:scale-95"
                         disabled={pageIndex >= pageCount - 1}
                         onClick={() => handlePageChange(pageIndex + 1)}
                     >
